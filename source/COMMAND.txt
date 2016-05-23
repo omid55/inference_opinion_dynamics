@@ -1,0 +1,52 @@
+%% Figures
+% Only first time
+figure;
+set(gcf, 'PaperPosition',[0.25 2.5 8 5]);
+my_cnt = 1;
+my_ch = 'a';
+
+
+%-------------------------------------------------------------------------------------------------------
+
+
+% In each time
+runz = 20;
+subplot(2,2,my_cnt);
+my_cnt = my_cnt + 1;
+hold on;
+times = (1:size(randD,2)) * N;
+myScale = 10;    % << CHECK HERE >> << SET IT TO 1 >>
+title(['\bf(' char(my_ch) ')']);
+my_ch = my_ch + 1;
+errorbar(times,myScale*mean(randD),myScale*std(randD)/sqrt(runz),'r');
+errorbar(times,myScale*mean(degsD),myScale*std(degsD)/sqrt(runz),'b');
+errorbar(times,myScale*mean(betwD),myScale*std(betwD)/sqrt(runz),'Color',[1 0.69 0.39]);
+errorbar(times,myScale*mean(closD),myScale*std(closD)/sqrt(runz),'c');
+errorbar(times,myScale*mean(mineD),myScale*std(mineD)/sqrt(runz),'g');
+leg = legend('Random','Degree','Betweenness','Closeness','Proposed','Location','Southeast');
+set(leg,'FontSize',8);
+%axis([0,times(end)+1000,myScale*(min(mean(randD))-20),myScale*(N+InformedAgentsSize+20)]);
+%axis('tight');
+xlabel('\bfIteration #');
+ylabel('\bfDesired Opinion Population');
+axis([0 5200 0 1200]);
+
+
+%-------------------------------------------------------------------------------------------------------
+%-------------------------------------------------------------------------------------------------------
+
+
+%% Correlations
+[r1,p1] = corr(SP,soc_pow)
+[hR1,hP1] = corr(ranks,soc_pow)
+[r2,p2] = corr(SP,soc_pow,'type','Spearman')
+[hR2,hP2] = corr(ranks,soc_pow,'type','Spearman')
+%[hitsR,hitsP] = corr(ranks,SP,'type','Spearman')
+
+hitGood = GiveGoods(ranks,InformedAgentsSize);
+socGood = GiveGoods(soc_pow,InformedAgentsSize);
+spGood = GiveGoods(SP,InformedAgentsSize);
+HitsCnt = length(intersect(socGood,hitGood))/length(socGood)
+SPCnt = length(intersect(socGood,spGood))/length(socGood)
+	
+	
