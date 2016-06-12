@@ -3,7 +3,8 @@
 function [ net,initOp ] = InitializeOpinions( N,K,DE_config,netType )
 
 %% Social Network
-averageDegree = 12;
+averageDegree = 12;  
+% averageDegree = 6;   % << SIMPLE >>
 switch netType
     case 1
     %BA

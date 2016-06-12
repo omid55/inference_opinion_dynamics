@@ -26,6 +26,7 @@ clc;
 %% ----------------===== All Parameters =====----------------
 % ---------------------=====================================---------------------
 N = 100;                                  % number of nodes
+% N = 20;                                  % << SIMPLE >>
 % net_type = 1;
 % soc_type = 1;
 MaxDatasetIteration = 10;        % iteration count
@@ -278,8 +279,22 @@ highCloseness = highCloseness(1:InformedAgentsSize);   % for removing excess tar
 % % % highCloseness = GiveGoods(clos,InformedAgentsSize);
 
 
-% by random
-randTar = randi(N,[1,InformedAgentsSize]);    % << CHECK HERE >>  REMOVE THIS AND UNCOMMENT BELLOW
+% % by random
+% randTar = randi(N,[1,InformedAgentsSize]);    % << CHECK HERE >>  REMOVE THIS AND UNCOMMENT BELLOW
+
+% by my influence maximization's metric:
+EPN1_measure = zeros(N,1);
+indegs = sum(net,1);
+outdegs = sum(net,2);
+eps = 0.0001;
+for i = 1 : N
+    f1 = ((outdegs(i) + eps) / (indegs(i) + eps));
+    f2 = (mean(indegs(net(i,:) == 1)) / max(indegs));
+    EPN1_measure(i) = f1 * f2;
+end
+[~,EP1] = sort(EPN1_measure,'descend');
+EP1_targets = EP1(1:InformedAgentsSize)';
+randTar = EP1_targets;
 
 
 %% Influence maximization simulations

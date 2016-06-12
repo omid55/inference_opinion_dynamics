@@ -20,7 +20,7 @@ maincvx(3,1);
 subplot(2,2,4);
 maincvx(4,1);
 saveas(fig,'Figure1.fig');
-print -loos -dtiff Figure1.tiff;
+print('Figure1.png', '-dpng', '-r400');
 close all;
 
 fig = figure;
@@ -35,6 +35,6 @@ maincvx(1,4);
 subplot(2,3,5);
 maincvx(1,5);
 saveas(fig,'Figure2.fig');
-print -loos -dtiff Figure2.tiff;
+print('Figure2.png', '-dpng', '-r400');
 
 end
