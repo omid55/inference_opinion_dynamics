@@ -28,7 +28,7 @@ set(leg,'FontSize',8);
 %axis([0,times(end)+1000,myScale*(min(mean(randD))-20),myScale*(N+InformedAgentsSize+20)]);
 %axis('tight');
 xlabel('\bfIteration #');
-ylabel('\bfDesired Opinion Population');
+ylabel('\bfRatio of Followers of the desired opinion');
 axis([0 5200 0 1200]);
 
 

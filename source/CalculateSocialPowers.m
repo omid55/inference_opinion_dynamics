@@ -27,12 +27,10 @@ switch(soc_type)
     degs = sum(net);
     sp = max(degs) - degs + 10;
     sp = sp * 3;
-end
-
-if soc_type ~= 5
-    % for normalization
     sp = max(sum(net)) * sp / max(sp);
 end
+
+% sp = exp(sp/3);
 
 
 sorted = sort(sp,'descend');
@@ -56,12 +54,12 @@ sp(selected) = PowerfullStrength;
 % sp(highSPs(1:length(selected)/2)) = PowerfullStrength;
 % sp(selected(1:length(selected)/2)) = PowerfullStrength;
 
-
-%sp = exp(-degs);
-%sp = 1./degs;   
-%sp = exp(degs);
-%sp = degs;
-
+% 
+% sp = exp(-degs);
+% sp = 1./degs;   
+% sp = exp(degs);
+% sp = degs;
+% 
 % %% --== Gaussian noise added ==--
 % stand = 100;
 % N = length(degs);
@@ -71,7 +69,7 @@ sp(selected) = PowerfullStrength;
 % meanDeg = mean(degs(1:N));
 % sp = meanDeg * sp / mean(sp);
 % DegsWithSpCorr = corr(full(degs)',full(sp)')
-
+% 
 % % Matlab's noise
 % N = length(degs);
 % sp = awgn(degs,10,'measured');

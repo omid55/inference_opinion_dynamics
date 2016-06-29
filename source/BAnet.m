@@ -29,7 +29,7 @@ while n < N
     probablity = [probablity selected' ones(1,length(selected))*n];
 end
 
-sp = max(sp,sp');
+% sp = max(sp,sp');
 
 end
 
